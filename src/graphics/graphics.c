@@ -1,3 +1,4 @@
+#include <pspkernel.h>
 #include <pspgu.h>
 #include <pspgum.h>
 
@@ -23,6 +24,7 @@ void graphics_init(void)
         terrain_vertices,
         TERRAIN_VERTEX_COUNT
     );
+    sceKernelDcacheWritebackInvalidateAll();
 
     terrain_model.vertex_count = terrain_vertex_count;
     terrain_model.vertices = (ModelVertex *)terrain_vertices;

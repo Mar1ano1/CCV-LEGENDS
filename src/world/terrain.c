@@ -88,9 +88,9 @@ void terrain_generate(TerrainChunk *chunk, int chunk_x, int chunk_z)
             );
 
             chunk->heights[z][x] =
-                (mountains - 0.5f) * 35.0f +
-                (hills - 0.5f) * 9.0f +
-                (detail - 0.5f) * 1.5f;
+                (mountains - 0.5f) * 350.0f +
+                (hills - 0.5f) * 90.0f +
+                (detail - 0.5f) * 15.0f;
         }
     }
 }
