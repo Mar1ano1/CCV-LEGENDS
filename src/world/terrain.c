@@ -104,3 +104,60 @@ float terrain_get_height(const TerrainChunk *chunk, int x, int z)
 
     return chunk->heights[z][x];
 }
+
+/* Constrói a superfície 3D do terreno */
+int terrain_build_mesh(
+    const TerrainChunk *chunk,
+    TerrainVertex *vertices,
+    int max_vertices)
+{
+    int x, z;
+    int count = 0;
+
+    for (z = 0; z < TERRAIN_RESOLUTION - 1; z++)
+    {
+        for (x = 0; x < TERRAIN_RESOLUTION - 1; x++)
+        {
+            int x0 = x;
+            int x1 = x + 1;
+            int z0 = z;
+            int z1 = z + 1;
+
+            float wx0 = x0 * 4.0f - 32.0f;
+            float wx1 = x1 * 4.0f - 32.0f;
+            float wz0 = z0 * 4.0f - 32.0f;
+            float wz1 = z1 * 4.0f - 32.0f;
+
+            float h00 = chunk->heights[z0][x0];
+            float h10 = chunk->heights[z0][x1];
+            float h01 = chunk->heights[z1][x0];
+            float h11 = chunk->heights[z1][x1];
+
+            float average = (h00 + h10 + h01 + h11) * 0.25f;
+
+            unsigned int color;
+
+            if (average > 10.0f)
+                color = 0xFF888888;
+            else if (average > 3.0f)
+                color = 0xFF338844;
+            else
+                color = 0xFF226633;
+
+            if (count + 6 > max_vertices)
+                return count;
+
+            /* Primeiro triângulo */
+            vertices[count++] = (TerrainVertex){color, {wx0, h00, wz0}};
+            vertices[count++] = (TerrainVertex){color, {wx1, h10, wz0}};
+            vertices[count++] = (TerrainVertex){color, {wx0, h01, wz1}};
+
+            /* Segundo triângulo */
+            vertices[count++] = (TerrainVertex){color, {wx1, h10, wz0}};
+            vertices[count++] = (TerrainVertex){color, {wx1, h11, wz1}};
+            vertices[count++] = (TerrainVertex){color, {wx0, h01, wz1}};
+        }
+    }
+
+    return count;
+}
