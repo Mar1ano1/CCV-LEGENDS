@@ -1,9 +1,10 @@
 TARGET = EBOOT
 
 OBJS = src/main.o \
+       src/world/terrain.o \
        src/graphics/graphics.o
 
-INCDIR = include src/graphics
+INCDIR = include src/graphics src/world
 
 CFLAGS = -O2 -G0 -Wall
 CXXFLAGS = $(CFLAGS)
