@@ -3,6 +3,8 @@ TARGET = EBOOT
 OBJS = src/main.o \
        src/world/terrain.o \
        src/graphics/graphics.o
+       src/graphics/renderer.o \
+       src/graphics/model.o
 
 INCDIR = include src/graphics src/world
 
