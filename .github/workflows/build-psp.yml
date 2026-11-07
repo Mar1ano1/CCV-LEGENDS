@@ -1,0 +1,26 @@
+name: CCV LEGENDS - PSP Build
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download and verify PSPDEV
+        run: |
+          docker pull pspdev/pspdev:latest
+          docker run --rm pspdev/pspdev:latest psp-gcc --version
+
+      - name: Verify PSP SDK
+        run: |
+          docker run --rm pspdev/pspdev:latest psp-config --pspdev-path
+
+      - name: Success
+        run: echo "CCV LEGENDS - PSP TOOLCHAIN READY"
