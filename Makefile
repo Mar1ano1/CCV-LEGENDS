@@ -1,12 +1,15 @@
 TARGET = EBOOT
-OBJS = src/main.o
 
-INCDIR = include
+OBJS = src/main.o \
+       src/graphics/graphics.o
+
+INCDIR = include src/graphics
+
 CFLAGS = -O2 -G0 -Wall
 CXXFLAGS = $(CFLAGS)
 ASFLAGS = $(CFLAGS)
 
-LIBS = -lpspdebug -lpspdisplay -lpspkernel
+LIBS = -lpspgu -lpspge -lpspdisplay -lpspkernel
 
 EXTRA_TARGETS = EBOOT.PBP
 PSP_EBOOT_TITLE = CCV LEGENDS
