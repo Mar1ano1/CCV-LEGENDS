@@ -13,14 +13,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Download and verify PSPDEV
+      - name: Compile CCV LEGENDS
         run: |
-          docker pull pspdev/pspdev:latest
-          docker run --rm pspdev/pspdev:latest psp-gcc --version
+          docker run --rm \
+            -v "$PWD:/build" \
+            -w /build \
+            pspdev/pspdev:latest \
+            make
 
-      - name: Verify PSP SDK
-        run: |
-          docker run --rm pspdev/pspdev:latest psp-config --pspdev-path
-
-      - name: Success
-        run: echo "CCV LEGENDS - PSP TOOLCHAIN READY"
+      - name: Upload PSP game
+        uses: actions/upload-artifact@v4
+        with:
+          name: CCV-LEGENDS-PSP
+          path: EBOOT.PBP
