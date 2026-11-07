@@ -9,7 +9,7 @@ CFLAGS = -O2 -G0 -Wall
 CXXFLAGS = $(CFLAGS)
 ASFLAGS = $(CFLAGS)
 
-LIBS = -lpspgu -lpspge -lpspdisplay -lpspkernel
+LIBS = -lpspgum -lpspgu -lpspge -lpspdisplay -lpspkernel
 
 EXTRA_TARGETS = EBOOT.PBP
 PSP_EBOOT_TITLE = CCV LEGENDS
