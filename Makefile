@@ -11,4 +11,6 @@ LIBS = -lpspdebug -lpspdisplay -lpspkernel
 EXTRA_TARGETS = EBOOT.PBP
 PSP_EBOOT_TITLE = CCV LEGENDS
 
+PSPSDK := $(shell psp-config --pspsdk-path)
+
 include $(PSPSDK)/lib/build.mak
