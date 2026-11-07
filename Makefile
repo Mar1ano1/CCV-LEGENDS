@@ -2,7 +2,7 @@ TARGET = EBOOT
 
 OBJS = src/main.o \
        src/world/terrain.o \
-       src/graphics/graphics.o
+       src/graphics/graphics.o \
        src/graphics/renderer.o \
        src/graphics/model.o
 
