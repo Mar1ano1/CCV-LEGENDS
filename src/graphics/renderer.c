@@ -67,7 +67,7 @@ void renderer_init(void)
 void renderer_begin(void)
 {
     ScePspFVector3 eye = {
-        0.0f, 35.0f, 85.0f
+        0.0f, 65.0f, 110.0f
     };
 
     ScePspFVector3 target = {
@@ -92,10 +92,10 @@ void renderer_begin(void)
     sceGumLoadIdentity();
 
     sceGumPerspective(
-        55.0f,
+        60.0f,
         (float)SCREEN_WIDTH / SCREEN_HEIGHT,
         1.0f,
-        500.0f
+        1000.0f
     );
 
     sceGumMatrixMode(GU_VIEW);

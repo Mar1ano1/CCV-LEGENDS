@@ -88,9 +88,9 @@ void terrain_generate(TerrainChunk *chunk, int chunk_x, int chunk_z)
             );
 
             chunk->heights[z][x] =
-                (mountains - 0.5f) * 350.0f +
-                (hills - 0.5f) * 90.0f +
-                (detail - 0.5f) * 15.0f;
+                (mountains - 0.5f) * 105.0f +
+                (hills - 0.5f) * 27.0f +
+                (detail - 0.5f) * 4.5f;
         }
     }
 }
@@ -137,9 +137,9 @@ int terrain_build_mesh(
 
             unsigned int color;
 
-            if (average > 10.0f)
+            if (average > 30.0f)
                 color = 0xFF888888;
-            else if (average > 3.0f)
+            else if (average > 9.0f)
                 color = 0xFF338844;
             else
                 color = 0xFF226633;
